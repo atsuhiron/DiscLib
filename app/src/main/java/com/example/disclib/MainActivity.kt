@@ -9,6 +9,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.disclib.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +34,17 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+
+        //RecyclerViewの取得
+        val recyclerView = findViewById<RecyclerView>(R.id.rvList)
+
+        //Adapterの設定
+        val adapter = ItemAdapter()
+        recyclerView.adapter = adapter
+
+        //LayoutManagerの設定
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
