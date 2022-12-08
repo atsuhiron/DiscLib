@@ -5,15 +5,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.disclib.model.DiscRecord
 
 class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
-
-    val data = listOf<Int>(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
+    
+    val discDate = listOf<DiscRecord>(
+        DiscRecord(0, "D1", "some movie 1"),
+        DiscRecord(1, "D1", "some movie 2"),
+        DiscRecord(2, "D2", "some movie 3"),
+        DiscRecord(3, "D2", "some movie 4"),
+        DiscRecord(4, "D3", "some movie 5"),
+        DiscRecord(5, "D3", "some movie 6"),
+    )
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val textView: TextView
+        val movIndex: TextView
+        val discId: TextView
+        val movName: TextView
+        val updated: TextView
         init {
-            textView = view.findViewById(R.id.disc_rec_index)
+            movIndex = view.findViewById(R.id.mov_index)
+            discId = view.findViewById(R.id.disc_id)
+            movName = view.findViewById(R.id.mov_name)
+            updated = view.findViewById(R.id.updated)
         }
     }
 
@@ -24,9 +38,12 @@ class ItemAdapter: RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val item = data[position]
-        viewHolder.textView.text = item.toString()
+        val item = discDate[position]
+        viewHolder.movIndex.text = item.movieIndex.toString()
+        viewHolder.discId.text = item.discId
+        viewHolder.movName.text = item.movieName
+        viewHolder.updated.text = item.updated.toString()
     }
 
-    override fun getItemCount() = data.size
+    override fun getItemCount() = discDate.size
 }
